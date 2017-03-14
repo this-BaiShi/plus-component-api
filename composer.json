@@ -1,0 +1,27 @@
+{
+  "name": "medz/plus-component-example",
+  "type": "plus-component",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Seven Du",
+      "email": "shiweudu@outlook.com",
+      "homepage": "http://medz.cn",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "src/helpers.php"
+    ],
+    "psr-4": {
+      "Medz\\Component\\ZhiyiPlus\\PlusComponentExample\\": "src/"
+    }
+  },
+  "extra": {
+    "installer-class": "Medz\\Component\\ZhiyiPlus\\PlusComponentExample\\Installer\\Installer"
+  },
+  "require": {
+    "zhiyicx/plus-install-plugin": "^1.0"
+  }
+}
