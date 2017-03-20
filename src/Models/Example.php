@@ -1,6 +1,6 @@
 <?php
 
-namespace Medz\Component\ZhiyiPlus\PlusComponentExample\Models;
+namespace this-baishi\Component\ZhiyiPlus\PlusComponentAPI\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Medz\Component\ZhiyiPlus\PlusComponentExample\Installer;
+namespace baishi\Component\ZhiyiPlus\PlusComponentAPI\Installer;
 
 use Zhiyi\Component\Installer\PlusInstallPlugin\ComponentInfoInterface;
-use function Medz\Component\ZhiyiPlus\PlusComponentExample\{
+use function baishi\Component\ZhiyiPlus\PlusComponentAPI\{
     asset
 };
 
@@ -18,7 +18,7 @@ class Info implements ComponentInfoInterface
      */
     public function getName(): string
     {
-        return 'Example';
+        return 'API';
     }
 
     /**
@@ -54,6 +54,6 @@ class Info implements ComponentInfoInterface
      */
     public function getAdminEntry()
     {
-        return route('example.admin');
+        return route('localhost.admin');
     }
 }

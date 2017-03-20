@@ -1,10 +1,10 @@
 <?php
 
-namespace Medz\Component\ZhiyiPlus\PlusComponentExample\Installer;
+namespace baishi\Component\ZhiyiPlus\PlusComponentAPI\Installer;
 
 use Closure;
 use Zhiyi\Component\Installer\PlusInstallPlugin\AbstractInstaller;
-use function Medz\Component\ZhiyiPlus\PlusComponentExample\{
+use function baishi\Component\ZhiyiPlus\PlusComponentAPI\{
     route_path,
     resource_path,
     base_path as component_base_path

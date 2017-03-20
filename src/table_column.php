@@ -10,4 +10,9 @@ if (!Schema::hasColumn($component_table_name, 'data')) {
         $table->string('data')->nullable();
     });
 }
+if (!Schema::hasColumn($component_table_name, 'data2')) {
+    Schema::table($component_table_name, function (Blueprint $table) {
+        $table->integer('data2')->nullable()->comment('测试');
+    });
+}
 

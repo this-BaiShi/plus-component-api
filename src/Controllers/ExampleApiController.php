@@ -1,6 +1,6 @@
 <?php
 
-namespace Medz\Component\ZhiyiPlus\PlusComponentExample\Controllers;
+namespace this-baishi\Component\ZhiyiPlus\PlusComponentAPI\Controllers;
 
 use Zhiyi\Plus\Http\Controllers\Controller;
 

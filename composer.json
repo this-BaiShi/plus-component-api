@@ -1,5 +1,5 @@
 {
-  "name": "medz/plus-component-example",
+  "name": "this-baishi/plus-component-api",
   "type": "plus-component",
   "license": "MIT",
   "authors": [
@@ -15,13 +15,14 @@
       "src/helpers.php"
     ],
     "psr-4": {
-      "Medz\\Component\\ZhiyiPlus\\PlusComponentExample\\": "src/"
+      "baishi\\Component\\ZhiyiPlus\\PlusComponentAPI\\": "src/"
     }
   },
   "extra": {
-    "installer-class": "Medz\\Component\\ZhiyiPlus\\PlusComponentExample\\Installer\\Installer"
+    "installer-class": "baishi\\Component\\ZhiyiPlus\\PlusComponentAPI\\Installer\\Installer"
   },
   "require": {
     "zhiyicx/plus-install-plugin": "^1.0"
-  }
+  },
+  "version": "1.0.1"
 }

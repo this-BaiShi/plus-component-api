@@ -1,12 +1,12 @@
 <?php
 
-use function Medz\Component\ZhiyiPlus\PlusComponentExample\base_path as component_base_path;
+use function baishi\Component\ZhiyiPlus\PlusComponentAPI\base_path as component_base_path;
 
 Route::middleware('web')
-    ->namespace('Medz\\Component\\ZhiyiPlus\\PlusComponentExample\\Controllers')
+    ->namespace('baishi\\Component\\ZhiyiPlus\\PlusComponentAPI\\Controllers')
     ->group(component_base_path('/routes/web.php'));
 
-Route::prefix('api/v1')
+Route::prefix('api/v1.5')
     ->middleware('api')
-    ->namespace('Medz\\Component\\ZhiyiPlus\\PlusComponentExample\\Controllers')
+    ->namespace('baishi\\Component\\ZhiyiPlus\\PlusComponentAPI\\Controllers')
     ->group(component_base_path('/routes/api.php'));

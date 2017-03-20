@@ -1,6 +1,6 @@
 <?php
 
-namespace Medz\Component\ZhiyiPlus\PlusComponentExample;
+namespace baishi\Component\ZhiyiPlus\PlusComponentAPI;
 
 use function asset as plus_asset;
 use function view as plus_view;
@@ -57,7 +57,7 @@ function base_path($path = '')
  */
 function component_name()
 {
-    return 'medz/plus-component-example';
+    return 'this-baishi/plus-component-api';
 }
 
 /**

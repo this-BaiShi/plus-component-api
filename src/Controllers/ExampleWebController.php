@@ -1,9 +1,9 @@
 <?php
 
-namespace Medz\Component\ZhiyiPlus\PlusComponentExample\Controllers;
+namespace this-baishi\Component\ZhiyiPlus\PlusComponentAPI\Controllers;
 
 use Zhiyi\Plus\Http\Controllers\Controller;
-use function Medz\Component\ZhiyiPlus\PlusComponentExample\view;
+use function this-baishi\Component\ZhiyiPlus\PlusComponentAPI\view;
 
 class ExampleWebController extends Controller
 {
