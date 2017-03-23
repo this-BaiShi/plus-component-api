@@ -153,7 +153,7 @@ class AuthController extends Controller
                 'code'    => 1013,
                 'message' => '请重新登录',
                 'data'    => null,
-            ]);
+            ])->setStatusCode(401);
         }
 
         DB::transaction(function () use ($token, $shutDownState) {
@@ -210,6 +210,6 @@ class AuthController extends Controller
             'code'    => 0,
             'message' => '重置密码成功',
             'data'    => null,
-        ]);
+        ])->setStatusCode(201);
     }
 }

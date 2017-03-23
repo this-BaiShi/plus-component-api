@@ -55,7 +55,7 @@ class UserController extends Controller
         return response()->json(static::createJsonData([
             'code'    => 0,
             'status'  => true,
-        ]))->setStatusCode(201);
+        ]))->setStatusCode(200);
     }
 
     /**
