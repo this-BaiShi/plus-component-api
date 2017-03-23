@@ -1,6 +1,6 @@
 <?php
 
-namespace Zhiyi\Plus\Http\Controllers\APIs\V1;
+namespace baishi\Component\ZhiyiPlus\PlusComponentAPI\Controllers;
 
 use Illuminate\Http\Request;
 use Zhiyi\Plus\Http\Controllers\Controller;
@@ -70,7 +70,10 @@ class UserController extends Controller
      */
     public function get(Request $request)
     {
-        $datas = $users = User::whereIn('id', $request->user_ids)
+        if(!is_array($request->user_ids)){
+            $user_ids = explode(',',$request->user_ids);
+        }
+        $datas = $users = User::whereIn('id', $user_ids)
             ->with('datas', 'counts')
             ->get()
             ->toArray();
