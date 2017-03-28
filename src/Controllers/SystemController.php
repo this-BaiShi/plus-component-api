@@ -14,9 +14,6 @@ class SystemController extends Controller
         $data['port'] = '9900';
 
         return response()->json([
-            'status'  => true,
-            'code'    => 0,
-            'message' => '获取成功',
             'data'    => $data,
         ])->setStatusCode(200);
     }
@@ -29,10 +26,9 @@ class SystemController extends Controller
         $feedback->user_id = $request->user()->id;
         $feedback->save();
 
-        return response()->json(static::createJsonData([
-            'status'  => true,
-            'message' => '反馈成功',
-        ]))->setStatusCode(201);
+        return response()->json([
+            'msg' => '反馈成功',
+        ])->setStatusCode(201);
     }
 
     /**
@@ -65,10 +61,8 @@ class SystemController extends Controller
             $datas = $list->toArray();
         }
 
-        return response()->json(static::createJsonData([
-            'status'  => true,
-            'message' => '获取成功',
+        return response()->json([
             'data'    => $datas,
-        ]))->setStatusCode(200);
+        ])->setStatusCode(200);
     }
 }

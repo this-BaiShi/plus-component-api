@@ -10,7 +10,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class CheckIsFollow
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * Handle an incoming request.
@@ -30,11 +30,9 @@ class CheckIsFollow
             ])
             ->count()
         ) {
-            return response()->json(static::createJsonData([
-                'code'    => 1020,
-                'message' => '您已经关注了此用户',
-                'status'  => false,
-            ]))->setStatusCode(400);
+            return response()->json([
+                'msg' => '您已经关注了此用户',
+            ])->setStatusCode(400);
         }
 
         return $next($request);

@@ -15,10 +15,10 @@ class FollowController extends Controller
     {
         $user = User::find($request->user_id);
         if (!$user or !$user instanceof User) {
-            return response()->json(static::createJsonData([
-                'status'  => false,
-                'code'    => 1005,
-            ]))->setStatusCode(404);
+
+            return response()->json([
+                'msg' => '用户不存在',
+            ])->setStatusCode(404);
         }
     }
 
@@ -45,11 +45,9 @@ class FollowController extends Controller
         $this->countUserFollow($user_id, 'increment', 'following_count');
         $this->countUserFollow($follow_user_id, 'increment', 'followed_count');
 
-        return response()->json(static::createJsonData([
-            'status'  => true,
-            'code'    => 0,
-            'message' => '关注成功',
-        ]))->setStatusCode(201);
+        return response()->json([
+            'msg' => '关注成功',
+        ])->setStatusCode(201);
     }
 
     /**
@@ -81,11 +79,9 @@ class FollowController extends Controller
         $this->countUserFollow($user_id, 'decrement', 'following_count');
         $this->countUserFollow($follow_user_id, 'decrement', 'followed_count');
 
-        return response()->json(static::createJsonData([
-            'status'  => true,
-            'code'    => 0,
-            'message' => '成功取关',
-        ]))->setStatusCode(201);
+        return response()->json([
+            'msg' => '成功取关',
+        ])->setStatusCode(201);
     }
 
     /**
@@ -98,11 +94,9 @@ class FollowController extends Controller
     public function follows(int $user_id, int $max_id = 0)
     {
         if (!User::find($user_id)) {
-            return response()->json(static::createJsonData([
-                'status'  => false,
-                'code'    => 1023,
-                'message' => '用户未找到',
-            ]))->setStatusCode(404);
+            return response()->json([
+                'msg' => '用户未找到',
+            ])->setStatusCode(404);
         }
 
         $follows = Following::where('user_id', $user_id)
@@ -125,12 +119,9 @@ class FollowController extends Controller
             $datas['follows'][] = $data;
         }
 
-        return response()->json(static::createJsonData([
-            'status'  => true,
-            'code'    => 0,
-            'message' => '获取成功',
-            'data'    => $datas,
-        ]))->setStatusCode(200);
+        return response()->json([
+            'data' => $datas,
+        ])->setStatusCode(200);
     }
 
     /**
@@ -143,11 +134,9 @@ class FollowController extends Controller
     public function followeds(int $user_id, int $max_id = 0)
     {
         if (!User::find($user_id)) {
-            return response()->json(static::createJsonData([
-                'status'  => false,
-                'code'    => 1023,
-                'message' => '用户未找到',
-            ]))->setStatusCode(404);
+            return response()->json([
+                'msg' => '用户未找到',
+            ])->setStatusCode(404);
         }
         $followeds = Followed::where('user_id', $user_id)
             ->where(function ($query) use ($max_id) {
@@ -170,12 +159,9 @@ class FollowController extends Controller
             $datas['followeds'][] = $data;
         }
 
-        return response()->json(static::createJsonData([
-            'status'  => true,
-            'code'    => 0,
-            'message' => '获取成功',
+        return response()->json([
             'data'    => $datas,
-        ]))->setStatusCode(200);
+        ])->setStatusCode(200);
     }
 
     /**
@@ -203,12 +189,9 @@ class FollowController extends Controller
             }
         }
 
-        return response()->json(static::createJsonData([
-            'status'  => true,
-            'code'    => 0,
-            'message' => '获取成功',
+        return response()->json([
             'data'    => $data,
-        ]))->setStatusCode(200);
+        ])->setStatusCode(200);
     }
 
     protected function countUserFollow($user_id, $method, $countKey)

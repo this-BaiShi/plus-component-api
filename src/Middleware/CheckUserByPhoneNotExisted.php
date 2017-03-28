@@ -8,7 +8,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class CheckUserByPhoneNotExisted
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * Handle an incoming request.
@@ -25,9 +25,9 @@ class CheckUserByPhoneNotExisted
 
         // 手机号已被使用
         if ($user) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1010,
-            ]))->setStatusCode(403);
+            ])->setStatusCode(403);
         }
 
         return $next($request);

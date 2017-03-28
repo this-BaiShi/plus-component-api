@@ -13,7 +13,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class ChangeUserCover
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * 修改用户个人主页背景图中间件入口.
@@ -50,9 +50,9 @@ class ChangeUserCover
         $task = StorageTask::find($storage_task_id);
         $task->load('storage');
         if (!$task) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 2000,
-            ]))->setStatusCode(403);
+            ])->setStatusCode(403);
         }
 
         $user = $request->user();
@@ -91,9 +91,9 @@ class ChangeUserCover
     {
         $profile = UserProfileSetting::where('profile', 'cover')->first();
         if (!$profile) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1017,
-            ]))->setStatusCode(500);
+            ])->setStatusCode(500);
         }
 
         return $this->linkStorage($user, $task, $profile, $next);
@@ -116,9 +116,9 @@ class ChangeUserCover
     {
         $storage = $task->storage;
         if (!$storage) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 2004,
-            ]))->setStatusCode(404);
+            ])->setStatusCode(404);
         }
 
         $user->storages()->sync([$storage->id], false);

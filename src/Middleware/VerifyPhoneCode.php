@@ -8,7 +8,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class VerifyPhoneCode
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * 验证验证码中间件.
@@ -31,9 +31,9 @@ class VerifyPhoneCode
             ->first();
 
         if (!$verify || $verify->state == 2) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1001,
-            ]))->setStatusCode(403);
+            ])->setStatusCode(403);
         }
 
         // 验证通过，失效验证码，执行下一步操作.

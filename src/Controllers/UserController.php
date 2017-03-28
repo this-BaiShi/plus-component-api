@@ -26,9 +26,9 @@ class UserController extends Controller
         $user->createPassword($password);
         $user->save();
 
-        return response()->json(static::createJsonData([
-            'status' => true,
-        ]))->setStatusCode(201);
+        return response()->json([
+            'msg' => '密码修改成功',
+        ])->setStatusCode(201);
     }
 
     /**
@@ -52,10 +52,9 @@ class UserController extends Controller
         }
         $user->syncData($datas);
 
-        return response()->json(static::createJsonData([
-            'code'    => 0,
-            'status'  => true,
-        ]))->setStatusCode(200);
+        return response()->json([
+            'msg'    => '修改成功',
+        ])->setStatusCode(201);
     }
 
     /**
@@ -79,17 +78,11 @@ class UserController extends Controller
             ->toArray();
         if (!$datas) {
             return response()->json([
-                'status'  => false,
                 'message' => '没有相关用户',
-                'code'    => 1019,
-                'data'    => null,
             ])->setStatusCode(404);
         }
 
         return response()->json([
-            'status'  => true,
-            'code'    => 0,
-            'message' => '获取成功',
             'data'    => $datas,
         ])->setStatusCode(200);
     }

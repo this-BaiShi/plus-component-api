@@ -9,7 +9,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class CheckUserByNameExisted
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * 检查用户是否存在中间件.
@@ -26,9 +26,9 @@ class CheckUserByNameExisted
 
         // 用户不存在 or 软删除用户
         if (!$user || $user->deleted_at) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1005,
-            ]))->setStatusCode(404);
+            ])->setStatusCode(404);
         }
 
         return $next($request);

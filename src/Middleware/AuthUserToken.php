@@ -10,7 +10,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class AuthUserToken
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * 验证用户认证入口.
@@ -25,9 +25,9 @@ class AuthUserToken
         $accessToken = $request->headers->get('ACCESS-TOKEN');
 
         if (!$accessToken) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1016,
-            ]))->setStatusCode(401);
+            ])->setStatusCode(401);
         }
 
         return $this->checkAccessTokenExistedStep($accessToken, function (User $user) use ($next, $request) {
@@ -57,9 +57,9 @@ class AuthUserToken
             ->first();
 
         if (!$authToken) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1016,
-            ]))->setStatusCode(401);
+            ])->setStatusCode(401);
         }
 
         return $this->checkAccessTokenIsShutDownStep($authToken, $next);
@@ -79,9 +79,9 @@ class AuthUserToken
     protected function checkAccessTokenIsShutDownStep(AuthToken $authToken, Closure $next)
     {
         if ($authToken->state === 0) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1015,
-            ]))->setStatusCode(401);
+            ])->setStatusCode(401);
         }
 
         return $this->checkAccessTokenIsInvaildStep($authToken, $next);
@@ -102,9 +102,9 @@ class AuthUserToken
     {
         $now = $authToken->freshTimestamp();
         if ($authToken->deleted_at || ($authToken->expires && $authToken->created_at->diffInSeconds($now) >= $authToken->expires)) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1012,
-            ]))->setStatusCode(401);
+            ])->setStatusCode(401);
         }
 
         return $this->checkUserExistedStep($authToken->user, $next);
@@ -124,9 +124,9 @@ class AuthUserToken
     protected function checkUserExistedStep($user, Closure $next)
     {
         if (!$user || !$user instanceof User) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1005,
-            ]))->setStatusCode(401);
+            ])->setStatusCode(401);
         }
 
         return $next($user);

@@ -8,7 +8,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class CheckUserByPhoneExisted
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * Handle an incoming request.
@@ -25,9 +25,9 @@ class CheckUserByPhoneExisted
 
         // 用户不存在 or 软删除用户
         if (!$user || $user->deleted_at) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1005,
-            ]))->setStatusCode(404);
+            ])->setStatusCode(404);
         }
         $request->attributes->set('user', $user);
 

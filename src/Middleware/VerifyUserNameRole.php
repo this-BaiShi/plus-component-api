@@ -9,7 +9,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class VerifyUserNameRole
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
     /**
      * 最大用户名长度.
      *
@@ -37,9 +37,9 @@ class VerifyUserNameRole
         $length = strlen($request->input('name'));
 
         if ($length > $this->usernameMaxLength || $length < $this->usernameMinLength) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1002,
-            ]))->setStatusCode(403);
+            ])->setStatusCode(403);
         }
 
         $validator = Validator::make($request->all(), [
@@ -47,9 +47,9 @@ class VerifyUserNameRole
         ]);
 
         if ($validator->fails()) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1003,
-            ]))->setStatusCode(403);
+            ])->setStatusCode(403);
         }
 
         return $next($request);

@@ -37,11 +37,8 @@ class AuthController extends Controller
 
         if ($verify) {
             return response()->json([
-                'status'  => false,
-                'code'    => 1008,
-                'message' => null,
                 'data'    => $verify->makeSurplusSecond($vaildSecond),
-            ])->setStatusCode(403);
+            ])->setStatusCode(422);
         }
 
         $verify = new VerifyCode();
@@ -72,9 +69,9 @@ class AuthController extends Controller
 
         $user = User::byPhone($phone)->first();
         if (!$user->verifyPassword($password)) {
-            return response()->json(static::createJsonData([
-                'code' => 1006,
-            ]))->setStatusCode(401);
+            return response()->json([
+                'msg'    => '用户名或者密码错误',
+            ])->setStatusCode(422);
         }
 
         $deviceCode = $request->input('device_code');
@@ -117,9 +114,6 @@ class AuthController extends Controller
         ];
 
         return response()->json([
-            'status'  => true,
-            'code'    => 0,
-            'message' => '登录成功',
             'data'    => $data,
         ])->setStatusCode(201);
     }
@@ -142,17 +136,11 @@ class AuthController extends Controller
         if (!$refresh_token || !($token = AuthToken::withTrashed()->byRefreshToken($refresh_token)->orderByDesc()->first())) {
             return response()
                 ->json([
-                    'status'  => false,
-                    'code'    => 1016,
-                    'message' => '操作失败',
-                    'data'    => null,
+                    'msg' => '操作失败',
                 ])->setStatusCode(404);
         } elseif ($token->state === $shutDownState) {
             return response()->json([
-                'status'  => false,
-                'code'    => 1013,
-                'message' => '请重新登录',
-                'data'    => null,
+                'msg' => '请重新登录',
             ])->setStatusCode(401);
         }
 
@@ -206,10 +194,7 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-            'status'  => true,
-            'code'    => 0,
-            'message' => '重置密码成功',
-            'data'    => null,
+            'msg' => '重置密码成功',
         ])->setStatusCode(201);
     }
 }

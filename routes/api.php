@@ -3,7 +3,7 @@
 use baishi\Component\ZhiyiPlus\PlusComponentAPI\Middleware;
 
 // 获取手机验证码
-Route::post('/auth/phone/send-code', 'AuthController@sendPhoneCode')
+Route::post('/auth/phone/code', 'AuthController@sendPhoneCode')
     ->middleware(Middleware\VerifyPhoneNumber::class) // 验证手机号格式是否正确
     ->middleware(Middleware\VerifySendPhoneCodeType::class) // 验证发送验证码类型等集合
 ;
@@ -29,7 +29,7 @@ Route::post('/auth/register', 'AuthController@register')
 ;
 
 // 找回密码
-Route::patch('/auth/forgot', 'AuthController@forgotPassword')
+Route::patch('/auth/forgotPassword', 'AuthController@forgotPassword')
     ->middleware(Middleware\VerifyPhoneNumber::class) // 验证手机号格式
     ->middleware(Middleware\CheckUserByPhoneExisted::class) // 验证手机号码用户是否存在
     ->middleware(Middleware\VerifyPhoneCode::class) // 验证手机号码验证码是否正确

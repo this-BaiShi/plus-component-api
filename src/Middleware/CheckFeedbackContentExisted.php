@@ -8,7 +8,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class CheckFeedbackContentExisted
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * Handle an incoming request.
@@ -21,11 +21,9 @@ class CheckFeedbackContentExisted
     public function handle(Request $request, Closure $next)
     {
         if (!$request->input('content')) {
-            return response()->json(static::createJsonData([
-                'code'    => 7001,
-                'message' => '反馈内容不能为空',
-                'status'  => false,
-            ]))->setStatusCode(400);
+            return response()->json([
+                'msg' => '反馈内容不能为空',
+            ])->setStatusCode(400);
         }
 
         return $next($request);

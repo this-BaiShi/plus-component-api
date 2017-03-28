@@ -8,7 +8,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class VerifyPassword
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * 验证用户密码正确性中间件.
@@ -24,9 +24,9 @@ class VerifyPassword
         $user = $request->user();
 
         if (!$user->verifyPassword($password)) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1006,
-            ]))->setStatusCode(401);
+            ])->setStatusCode(401);
         }
 
         return $next($request);

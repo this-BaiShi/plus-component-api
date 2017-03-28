@@ -9,7 +9,7 @@ use Zhiyi\Plus\Traits\CreateJsonResponseData;
 
 class CheckUserByNameNotExisted
 {
-    use CreateJsonResponseData;
+//    use CreateJsonResponseData;
 
     /**
      * 从检查用户是否不存在中间件.
@@ -27,9 +27,9 @@ class CheckUserByNameNotExisted
 
         // 用户名已被使用
         if (($user && (!$theUser)) || ($user && $theUser && $user->id != $theUser->id)) {
-            return response()->json(static::createJsonData([
+            return response()->json([
                 'code' => 1004,
-            ]))->setStatusCode(403);
+            ])->setStatusCode(403);
         }
 
         return $next($request);
